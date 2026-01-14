@@ -133,5 +133,26 @@ class Installer implements LoadExtensionSchemaUpdatesHook {
 			"$dir/patches/patch-cw_wikis-drop-wiki_settings.sql",
 			true,
 		] );
+
+		// Add the cw_nsfw field to the cw_requests table
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-createwiki-central',
+			'addField',
+			'cw_requests',
+			'cw_nsfw',
+			"$dir/patches/patch-cw_requests-add-cw_nsfw.sql",
+			true,
+		] );
+
+		// Add the wiki_nsfw field to the cw_wikis table
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-createwiki',
+			'addField',
+			'cw_wikis',
+			'wiki_nsfw',
+			"$dir/patches/patch-cw_wikis-add-wiki_nsfw.sql",
+			true,
+		] );
+
 	}
 }
