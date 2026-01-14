@@ -16,6 +16,8 @@ class CreateWikiJob extends Job {
 	private readonly int $id;
 	private readonly bool $private;
 
+	private readonly bool $nsfw;
+
 	private readonly string $category;
 	private readonly string $creator;
 	private readonly string $dbname;
@@ -39,6 +41,7 @@ class CreateWikiJob extends Job {
 		$this->id = $params['id'];
 		$this->language = $params['language'];
 		$this->private = $params['private'];
+		$this->nsfw = $params['nsfw'];
 		$this->requester = $params['requester'];
 		$this->sitename = $params['sitename'];
 	}
@@ -55,11 +58,12 @@ class CreateWikiJob extends Job {
 				sitename: $this->sitename,
 				language: $this->language,
 				private: $this->private,
+				nsfw: $this->nsfw,
 				category: $this->category,
 				requester: $this->requester,
 				actor: $this->creator,
-				extra: $this->extra,
-				reason: "[[Special:RequestWikiQueue/{$this->id}|Requested]]"
+				reason: "[[Special:RequestWikiQueue/{$this->id}|Requested]]",
+				extra: $this->extra
 			);
 
 			if ( $notCreated ) {

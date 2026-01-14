@@ -70,6 +70,13 @@ class SpecialCreateWiki extends FormSpecialPage {
 			];
 		}
 
+		if ( $this->getConfig()->get( ConfigNames::UseNsfwWikis ) ) {
+			$formDescriptor['nsfw'] = [
+				'type' => 'check',
+				'label-message' => 'createwiki-label-nsfw',
+			];
+		}
+
 		if ( $this->getConfig()->get( ConfigNames::Categories ) ) {
 			$formDescriptor['category'] = [
 				'type' => 'select',
@@ -97,6 +104,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			sitename: $formData['sitename'],
 			language: $formData['language'],
 			private: $formData['private'] ?? 0,
+			nsfw: $formData['nsfw'] ?? 0,
 			category: $formData['category'] ?? '',
 			requester: $formData['requester'],
 			actor: $this->getContext()->getUser()->getName(),

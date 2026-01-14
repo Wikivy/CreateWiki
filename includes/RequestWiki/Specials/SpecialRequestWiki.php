@@ -111,6 +111,14 @@ class SpecialRequestWiki extends FormSpecialPage {
 			];
 		}
 
+		if ( $this->getConfig()->get(ConfigNames::UseNsfwWikis) ) {
+			$formDescriptor['nsfw'] = [
+				'type' => 'check',
+				'label-message' => 'requestwiki-label-nsfw',
+				'help-message' => 'createwiki-help-nsfw',
+			];
+		}
+
 		if ( $this->getConfig()->get( ConfigNames::ShowBiographicalOption ) ) {
 			$formDescriptor['bio'] = [
 				'type' => 'check',

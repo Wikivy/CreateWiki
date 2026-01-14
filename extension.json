@@ -440,6 +440,10 @@
 			"description": "Boolean. Whether to implement front end logic for marking wikis as private.",
 			"value": true
 		},
+		"CreateWikiUseNsfwWikis": {
+			"description": "Boolean. Whether to allow NSFW wikis.",
+			"value": false
+		},
 		"RequestWikiConfirmAgreement": {
 			"description": "Boolean. Whether to require users to confirm they will abide by farm policies.",
 			"value": false

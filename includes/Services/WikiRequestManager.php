@@ -66,6 +66,8 @@ class WikiRequestManager {
 	public const VISIBILITY_DELETE_REQUEST = 1;
 	public const VISIBILITY_SUPPRESS_REQUEST = 2;
 
+	public const NSFW = 0;
+
 	public const VISIBILITY_CONDS = [
 		self::VISIBILITY_PUBLIC => 'public',
 		self::VISIBILITY_DELETE_REQUEST => 'createwiki-deleterequest',
@@ -140,6 +142,7 @@ class WikiRequestManager {
 				'cw_dbname' => $dbname,
 				'cw_language' => $data['language'],
 				'cw_private' => $data['private'] ?? 0,
+				'cw_nsfw' => $data['nsfw'] ?? 0,
 				'cw_status' => 'inreview',
 				'cw_sitename' => $data['sitename'],
 				'cw_timestamp' => $this->dbw->timestamp(),
@@ -423,6 +426,7 @@ class WikiRequestManager {
 						'sitename' => $this->getSitename(),
 						'language' => $this->getLanguage(),
 						'private' => $this->isPrivate(),
+						'nsfw' => $this->isNsfw(),
 						'category' => $this->getCategory(),
 						'requester' => $this->getRequester()->getName(),
 						'creator' => $user->getName(),
@@ -455,11 +459,12 @@ class WikiRequestManager {
 				sitename: $this->getSitename(),
 				language: $this->getLanguage(),
 				private: $this->isPrivate(),
+				nsfw: $this->isNsfw(),
 				category: $this->getCategory(),
 				requester: $this->getRequester()->getName(),
 				actor: $user->getName(),
-				extra: $this->getAllExtraData(),
-				reason: "[[Special:RequestWikiQueue/{$this->ID}|Requested]]"
+				reason: "[[Special:RequestWikiQueue/{$this->ID}|Requested]]",
+				extra: $this->getAllExtraData()
 			);
 
 			if ( $notCreated ) {
@@ -750,6 +755,10 @@ class WikiRequestManager {
 		return (bool)$this->getRowObject()->cw_private;
 	}
 
+	public function isNsfw(): bool {
+		return (bool)$this->getRowObject()->cw_nsfw;
+	}
+
 	public function isBio(): bool {
 		return (bool)$this->getRowObject()->cw_bio;
 	}
@@ -792,6 +801,15 @@ class WikiRequestManager {
 
 		$this->trackChange( 'private', $this->isPrivate(), $private );
 		$this->getQueryBuilder()->set( [ 'cw_private' => (int)$private ] );
+	}
+
+	public function setNsfw( bool $nsfw ): void {
+		if ( $nsfw === $this->isNsfw() ) {
+			return;
+		}
+
+		$this->trackChange( 'nsfw', $this->isNsfw(), $nsfw );
+		$this->getQueryBuilder()->set( [ 'cw_nsfw' => (int)$nsfw ] );
 	}
 
 	public function setBio( bool $bio ): void {

@@ -71,6 +71,8 @@ class ConfigNames {
 
 	public const UsePrivateWikis = 'CreateWikiUsePrivateWikis';
 
+	public const UseNsfwWikis = 'CreateWikiUseNsfwWikis';
+
 	/**
 	 * RequestWiki config
 	 */

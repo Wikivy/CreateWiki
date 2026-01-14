@@ -183,6 +183,7 @@ class WikiManagerFactory {
 		string $sitename,
 		string $language,
 		bool $private,
+		bool $nsfw,
 		string $category,
 		string $requester,
 		string $actor,
@@ -207,11 +208,13 @@ class WikiManagerFactory {
 			->setLabel( 'category', $category )
 			->setLabel( 'language', $language )
 			->setLabel( 'private', $private ? 'Yes' : 'No' )
+			->setLabel( 'nsfw', $nsfw ? 'Yes' : 'No' )
 			->increment();
 
 		/** @phan-suppress-next-line PhanPossiblyUndeclaredMethod */
 		$timer = $this->statsFactory->getTiming( 'createwiki_creation_seconds' )
 			->setLabel( 'private', $private ? 'Yes' : 'No' )
+			->setLabel( 'nsfw', $nsfw ? 'Yes' : 'No' )
 			->start();
 		'@phan-var TimingMetric $timer';
 
@@ -232,6 +235,7 @@ class WikiManagerFactory {
 				'wiki_sitename' => $sitename,
 				'wiki_language' => $language,
 				'wiki_private' => (int)$private,
+				'wiki_nsfw' => (int)$nsfw,
 				'wiki_creation' => $this->dbw->timestamp(),
 				'wiki_category' => $category,
 				'wiki_extra' => $extraData,

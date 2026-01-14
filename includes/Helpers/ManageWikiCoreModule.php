@@ -13,6 +13,7 @@ class ManageWikiCoreModule extends RemoteWiki implements ICoreModule {
 			'experimental-wikis' => $this->options->get( ConfigNames::UseExperimental ),
 			'inactive-wikis' => $this->options->get( ConfigNames::UseInactiveWikis ),
 			'private-wikis' => $this->options->get( ConfigNames::UsePrivateWikis ),
+			'nsfw-wikis' => $this->options->get( ConfigNames::UseNsfwWikis ),
 		];
 		// Enable all other features
 		return $enabled[$feature] ?? true;
