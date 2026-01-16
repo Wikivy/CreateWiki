@@ -1,0 +1,383 @@
+[
+	{
+		"name": "cw_wikis",
+		"columns": [
+			{
+				"name": "wiki_dbname",
+				"type": "string",
+				"options": {
+					"length": 64,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wiki_sitename",
+				"type": "string",
+				"options": {
+					"length": 128,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wiki_language",
+				"type": "string",
+				"options": {
+					"length": 12,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wiki_private",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_creation",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "wiki_url",
+				"type": "text",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "wiki_closed",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_closed_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "wiki_inactive",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_inactive_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "wiki_inactive_exempt",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_inactive_exempt_reason",
+				"type": "text",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "wiki_deleted",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_deleted_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "wiki_locked",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_nsfw",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_dbcluster",
+				"type": "string",
+				"options": {
+					"length": 5,
+					"notnull": false
+				}
+			},
+			{
+				"name": "wiki_category",
+				"type": "string",
+				"options": {
+					"length": 64,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wiki_experimental",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "wiki_extra",
+				"type": "text",
+				"options": {
+					"notnull": false
+				}
+			}
+		],
+		"indexes": [
+			{ "name":  "wiki_dbname", "columns":  ["wiki_dbname"], "unique": false  },
+			{ "name":  "wiki_dbcluster", "columns":  ["wiki_dbcluster"], "unique": false  }
+		],
+		"pk": [ "wiki_dbname" ]
+	},
+	{
+		"name": "cw_requests",
+		"columns": [
+			{
+				"name": "cw_id",
+				"type": "bigint",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_comment",
+				"type": "text",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "cw_dbname",
+				"type": "string",
+				"options": {
+					"length": 64,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_language",
+				"type": "string",
+				"options": {
+					"length": 12,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_private",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "cw_sitename",
+				"type": "string",
+				"options": {
+					"length": 128,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_status",
+				"type": "string",
+				"options": {
+					"length": 16,
+					"notnull": false
+				}
+			},
+			{
+				"name": "cw_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_url",
+				"type": "string",
+				"options": {
+					"length": 96,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_user",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_category",
+				"type": "string",
+				"options": {
+					"length": 64,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_visibility",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "cw_locked",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "cw_nsfw",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "cw_bio",
+				"type": "mwtinyint",
+				"options": {
+					"default": 0
+				}
+			},
+			{
+				"name": "cw_extra",
+				"type": "text",
+				"options": {
+					"notnull": false
+				}
+			}
+		],
+		"indexes": [
+			{ "name":  "cw_status", "columns":  ["cw_status"], "unique": false },
+			{ "name":  "cw_timestamp", "columns":  ["cw_timestamp"], "unique": false  }
+		],
+		"pk": [ "cw_id" ]
+	},
+	{
+		"name": "cw_comments",
+		"columns": [
+			{
+				"name": "cw_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_comment",
+				"type": "blob",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_comment_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_comment_user",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			}
+
+		],
+		"indexes": [
+		],
+		"pk": [ ]
+	},
+	{
+		"name": "cw_history",
+		"columns": [
+			{
+				"name": "cw_history_id",
+				"type": "bigint",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_history_action",
+				"type": "string",
+				"options": {
+					"length": 50,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_history_actor",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_history_details",
+				"type": "blob",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "cw_history_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			}
+
+		],
+		"indexes": [
+		],
+		"pk": [ "cw_history_id" ]
+	}
+]
